@@ -9,7 +9,20 @@
     <title>IT Help me!</title>
 </head>
 <body>
+    @if($errors->any())
+        <div>
+        @foreach($errors->all() as $error)
+           <li>{{$error}}</li>
+        @endforeach
+        </div>
+    @endif
+
      <main class="m-4"> 
+        @if(session()->has('notice'))
+            <div>
+                {{session()->get('notice')}}
+            </div>
+        @endif
         @yield('main')
      </mian>
      <footer></footer>
