@@ -12,7 +12,7 @@ class articleController extends Controller
     }
    
     public function index(){
-        $articles=Article::all();
+        $articles=Article::paginate(3);
         return view('articles.index',['articles'=>$articles]);
     }
 
@@ -29,5 +29,24 @@ class articleController extends Controller
         auth()->user()->articles()->create($content);
         //auth()->articles()->user()->create($content);
         return redirect('/index')->with('notice','article has added!');
+    }
+
+    public function edit($id){
+
+        $article = auth()->user()->articles->find($id);
+        return view('articles.edit',['article'=>$article]);
+    }
+
+    public function update(Request $request, $id){
+        $article = auth()->user()->articles->find($id);
+
+        $content=$request->validate([
+            'title'=>'required',
+            'content'=>'required'
+        ]);
+
+        $article->update($content);
+
+        return redirect('/index')->with('notice','article has updated!');
     }
 }

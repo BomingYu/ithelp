@@ -8,7 +8,7 @@
 @foreach($articles as $article)
      <h1>{{$article->title}}</h1>
      <p>{{$article->created_at}} shared by {{$article->user->name}}</p>
-
+    <a href="{{route('articles.edit',$article)}}">Edit</a>
 @endforeach
-
+{{$articles->links()}}
 @endsection
