@@ -59,7 +59,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function Articles(){
-        return $this->hasMany('\App\Models\Article');
+    public function articles(){
+        return $this->hasMany('App\Models\Article');
     }
 }

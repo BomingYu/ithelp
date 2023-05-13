@@ -8,11 +8,11 @@
     @csrf
     <div class="field my-2">
         <label for="">Title</lable>
-        <input type="text" name="title" class="border border-gray-300 p-2">
+        <input type="text" name="title" value="{{old('title')}}" class="border border-gray-300 p-2">
     </div>
     <div class="field my-2">
         <label for="">Content</lable>
-        <textarea name="content"></textarea>
+        <textarea name="content">{{old('content')}}</textarea>
     </div>
     <div class="field">
         <button type="submit">Add!</button>

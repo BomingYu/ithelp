@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class articleController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except('index');
+    }
+   
     public function index(){
-        return view('articles.index');
+        $articles=Article::all();
+        return view('articles.index',['articles'=>$articles]);
     }
 
     public function create(){
@@ -21,6 +27,7 @@ class articleController extends Controller
         ]);
 
         auth()->user()->articles()->create($content);
+        //auth()->articles()->user()->create($content);
         return redirect('/index')->with('notice','article has added!');
     }
 }
