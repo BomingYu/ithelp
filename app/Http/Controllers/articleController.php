@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 class articleController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index','show');
     }
    
     public function index(){
-        $articles=Article::paginate(3);
+        $articles=Article::with('user')->paginate(3);
         return view('articles.index',['articles'=>$articles]);
+    }
+
+    public function show($id){
+        $article = Article::find($id);
+
+        return view('articles.show',['article'=>$article]);
     }
 
     public function create(){
@@ -48,5 +54,11 @@ class articleController extends Controller
         $article->update($content);
 
         return redirect('/index')->with('notice','article has updated!');
+    }
+
+    public function destroy($id){
+        $article = auth()->user()->articles->find($id);
+        $article->delete();
+        return redirect('/index')->with('notice','Deleted the article!!');
     }
 }

@@ -12,10 +12,10 @@
     </div>
     <div class="field my-2">
         <label for="">Content</lable>
-        <textarea name="content">{{old('content')}}</textarea>
+        <textarea name="content" class="border border-gray-300 p-2">{{old('content')}}</textarea>
     </div>
-    <div class="field">
-        <button type="submit">Add!</button>
+    <div class="field my-2">
+        <button type="submit" class="px-3 py-1 rounded bg-gray200 hover:bg-gray-300">Add!</button>
     </div>
 </form>
 

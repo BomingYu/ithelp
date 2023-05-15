@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('articles', articleController::class);
 
 Route::get('/index',[articleController::class,'index'])->name('root');
+
 Route::get('/',function(){
     return view('welcome');
 });
